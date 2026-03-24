@@ -1,0 +1,54 @@
+:root {
+  /* Colors - High Contrast Spec */
+  --bg-base: #000000;
+  --bg-white: #ffffff;
+  --bg-black: #000000;
+  --bg-card: rgba(255, 255, 255, 0.05);
+  
+  --text-white: #ffffff;
+  --text-black: #000000;
+  --text-primary-rgb: 255, 255, 255;
+  
+  --accent-green: #00e5a0;
+  --bg-emerald: #00423a;
+  --accent-purple: #7b5ff5;
+  --accent-blue: #4fb8ff;
+  --accent-orange: #ff9f43;
+  
+  --text-primary: var(--text-white);
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  --section-radius: 80px;
+  
+  --border-ghost: rgba(255, 255, 255, 0.08);
+  --border-active: rgba(255, 255, 255, 0.15);
+  
+  /* Gradients */
+  --gradient-purple-blue: linear-gradient(135deg, #7b5ff5 0%, #4fb8ff 100%);
+  
+  /* Typography */
+  --ff-display: "Bebas Neue", sans-serif;
+  --ff-body: "DM Sans", sans-serif;
+  
+  /* Layout */
+  --section-padding: 120px 8% 160px;
+  --container-max-width: 1400px;
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
+  --noise-opacity: 0.02;
+  --nav-h: 80px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--ff-body);
+}
+
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
