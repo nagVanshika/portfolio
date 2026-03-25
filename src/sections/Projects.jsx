@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { FiExternalLink, FiGithub } from 'react-icons/fi';
 import '../styles/variables.css';
 
@@ -51,11 +52,17 @@ const Projects = () => {
       desc: "Internal finance dashboard tracking revenue, expenses, and cash flow with detailed analytical views.",
       tags: ["React", "Node.js", "MongoDB"],
       id: "04"
+    },
+    {
+      title: "Med Inventory System",
+      desc: "Real-time medical inventory system with ML-powered demand forecasting using LSTM.",
+      tags: ["MERN Stack", "LSTM", "Python"],
+      id: "05"
     }
   ];
 
   const visibleCount = visibleProjects.size;
-  const progressWidth = (visibleCount / 4) * 100;
+  const progressWidth = (visibleCount / 5) * 100;
 
   return (
     <section id="projects" className="theme-black section-overlap" style={{ zIndex: 4 }}>
@@ -161,13 +168,13 @@ const Projects = () => {
                       ))}
                     </div>
                     
-                    <motion.a 
-                      href="#" 
-                      whileHover={{ x: 5, color: 'var(--accent-green)' }}
+                    <Link 
+                      to={`/project/${project.id === "01" ? "caarmaa-admin" : project.id === "02" ? "caarmaa-car-care" : project.id === "03" ? "caarmaa-tech" : project.id === "04" ? "caarmaa-billing" : "med-inventory"}`}
+                      className="view-project-btn"
                       style={{ color: '#fff', fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
                     >
-                      View Project <FiExternalLink />
-                    </motion.a>
+                      View Details <FiExternalLink />
+                    </Link>
                   </div>
                 </div>
 
