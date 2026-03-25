@@ -15,10 +15,16 @@ const ProjectDetail = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if (!project) navigate('/');
-  }, [project, navigate]);
+  }, [id]);
 
-  if (!project) return null;
+  if (!project) {
+    return (
+      <div style={{ padding: '160px 8%', backgroundColor: '#000', color: '#fff', minHeight: '100vh', textAlign: 'center' }}>
+        <h1 style={{ fontFamily: 'var(--ff-display)', fontSize: '3rem', marginBottom: '24px' }}>Project Not Found</h1>
+        <Link to="/" style={{ color: 'var(--accent-green)', textDecoration: 'none', fontWeight: 600 }}>Back to Portfolio</Link>
+      </div>
+    );
+  }
 
   const openLightbox = (index) => {
     setCurrentImageIndex(index);
@@ -26,44 +32,25 @@ const ProjectDetail = () => {
   };
 
   return (
-    <motion.div
+    <motion.div 
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.8, ease: 'var(--ease-cinematic)' }}
-      style={{ padding: '160px 8% 100px', minHeight: '100vh', backgroundColor: 'var(--bg-base)' }}
+      transition={{ duration: 0.8, ease: 'easeInOut' }}
+      style={{ padding: '160px 8% 100px', minHeight: '100vh', backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}
     >
-      <div className="container" style={{ maxWidth: 'var(--container-max-width)' }}>
-        <Link to="/" style={{ 
-          display: 'inline-flex', 
-          alignItems: 'center', 
-          gap: '12px', 
-          color: 'var(--text-muted)', 
-          marginBottom: '48px', 
-          fontSize: '0.875rem',
-          fontWeight: 600,
-          letterSpacing: '0.05em',
-          textTransform: 'uppercase',
-          transition: 'color 0.3s var(--ease-cinematic)'
-        }} className="hover-white">
+      <div className="container" style={{ maxWidth: 'var(--container-max-width)', margin: '0 auto' }}>
+        <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '40px', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase' }} className="hover-white">
           <FiArrowLeft /> Back to Portfolio
         </Link>
-
-        <div style={{ display: 'flex', gap: '8px', color: 'var(--text-muted)', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '32px' }}>
-          <Link to="/" style={{ color: 'inherit' }}>Portfolio</Link> 
-          <span style={{ opacity: 0.3 }}>/</span> 
-          <span>Projects</span> 
-          <span style={{ opacity: 0.3 }}>/</span> 
-          <span style={{ color: 'var(--text-primary)' }}>{project.title}</span>
-        </div>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '100px', alignItems: 'start' }}>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '80px', alignItems: 'start' }}>
           
           {/* Left Column: Content */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: 'var(--ease-cinematic)' }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px' }}>
               <span style={{ 
@@ -92,34 +79,39 @@ const ProjectDetail = () => {
                 color: 'var(--text-secondary)' 
               }}>{project.status}</span>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
-                {project.tags.map(tag => (
-                  <span key={tag} className="label-sm" style={{ color: 'var(--primary)' }}>#{tag}</span>
+                {project.tags?.map(tag => (
+                  <span key={tag} className="label-sm" style={{ color: 'var(--accent-green)', border: '1px solid rgba(0, 229, 160, 0.2)', padding: '4px 12px', borderRadius: '4px', background: 'rgba(0, 229, 160, 0.05)' }}>#{tag}</span>
                 ))}
               </div>
             </div>
 
             <div style={{ marginBottom: '56px' }}>
-              <h3 className="label-sm" style={{ color: '#fff', marginBottom: '24px' }}>Overview</h3>
-              <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: 1.6, fontWeight: 400 }}>{project.overview}</p>
+              <h3 className="label-sm" style={{ color: 'var(--accent-green)', marginBottom: '24px' }}>Overview</h3>
+              <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', lineHeight: 1.6 }}>{project.overview}</p>
             </div>
 
             <div style={{ marginBottom: '56px' }}>
-              <h3 className="label-sm" style={{ color: '#fff', marginBottom: '24px' }}>What Was Built</h3>
+              <h3 className="label-sm" style={{ color: 'var(--accent-green)', marginBottom: '24px' }}>Tech Specs</h3>
+              <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>{project.technicalDetails}</p>
+            </div>
+
+            <div style={{ marginBottom: '56px' }}>
+              <h3 className="label-sm" style={{ color: 'var(--accent-green)', marginBottom: '24px' }}>The Build</h3>
               <p style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', lineHeight: 1.7 }}>{project.details}</p>
             </div>
 
             <div style={{ marginBottom: '56px' }}>
-              <h3 className="label-sm" style={{ color: '#fff', marginBottom: '24px' }}>Key Features</h3>
-              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
-                {project.features.map((feature, i) => (
+              <h3 className="label-sm" style={{ color: 'var(--accent-green)', marginBottom: '24px' }}>Key Features</h3>
+              <ul style={{ display: 'flex', flexDirection: 'column', gap: '16px', listStyle: 'none', padding: 0 }}>
+                {project.features?.map((feature, i) => (
                   <motion.li 
                     key={i} 
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.4 + (0.1 * i), ease: 'var(--ease-cinematic)' }}
+                    transition={{ delay: 0.4 + (0.1 * i) }}
                     style={{ fontSize: '1.125rem', color: 'var(--text-secondary)', display: 'flex', gap: '16px', alignItems: 'flex-start' }}
                   >
-                    <span style={{ color: 'var(--primary)', fontWeight: 700, fontStyle: 'italic', fontFamily: 'var(--ff-display)' }}>{i + 1}</span> 
+                    <span style={{ color: 'var(--accent-green)', fontWeight: 700, fontStyle: 'italic', fontFamily: 'var(--ff-display)' }}>{i + 1}</span> 
                     <span>{feature}</span>
                   </motion.li>
                 ))}
@@ -141,6 +133,7 @@ const ProjectDetail = () => {
                   borderRadius: '100px',
                   fontWeight: 700,
                   fontSize: '1rem',
+                  textDecoration: 'none',
                   boxShadow: '0 10px 30px rgba(182, 160, 255, 0.2)'
                 }}
               >
@@ -153,11 +146,11 @@ const ProjectDetail = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: 'var(--ease-cinematic)' }}
+            transition={{ duration: 0.8, delay: 0.4 }}
           >
             <h3 className="label-sm" style={{ color: '#fff', marginBottom: '40px' }}>Visual Gallery</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-              {Array.from({ length: project.screenshotCount }).map((_, index) => (
+              {project.images?.map((img, index) => (
                 <motion.div
                   key={index}
                   whileHover={{ scale: 1.02 }}
@@ -175,14 +168,15 @@ const ProjectDetail = () => {
                     position: 'relative',
                     backdropFilter: 'var(--glass-blur)',
                     WebkitBackdropFilter: 'var(--glass-blur)',
-                    transition: 'border-color 0.3s var(--ease-cinematic)'
+                    transition: 'border-color 0.3s'
                   }}
                   className="gallery-item"
                 >
-                  <div style={{ textAlign: 'center', zIndex: 1 }}>
-                    <span className="label-sm" style={{ color: 'var(--text-muted)' }}>Shot {index + 1}</span>
-                  </div>
-                  {/* Subtle Shimmer/Gradient Overlay */}
+                  <img 
+                    src={img} 
+                    alt={`${project.title} screenshot ${index + 1}`} 
+                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                  />
                   <div style={{ 
                     position: 'absolute', 
                     top: 0, 
@@ -202,11 +196,11 @@ const ProjectDetail = () => {
 
       <Lightbox 
         isOpen={lightboxOpen} 
-        images={Array(project.screenshotCount).fill(null)} 
+        images={project.images || []} 
         currentIndex={currentImageIndex}
         onClose={() => setLightboxOpen(false)}
-        onPrev={() => setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : project.screenshotCount - 1))}
-        onNext={() => setCurrentImageIndex((prev) => (prev < project.screenshotCount - 1 ? prev + 1 : 0))}
+        onPrev={() => setCurrentImageIndex((p) => (p > 0 ? p - 1 : (project.images?.length || 1) - 1))}
+        onNext={() => setCurrentImageIndex((p) => (p < (project.images?.length || 1) - 1 ? p + 1 : 0))}
       />
 
       <style>{`

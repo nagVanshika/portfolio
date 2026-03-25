@@ -5,20 +5,23 @@ export const projects = [
     title: 'Caarmaa Customer Admin Dashboard',
     category: 'Production',
     teaser: "Internal command center for a mobility startup's operations.",
-    overview: "Developed an internal admin platform integrated with Caarmaa mobile applications for managing booking services and user operations.",
-    details: "Built modules for booking service catalog control, user management, surge charge configuration, and support ticket handling. Implemented analytics dashboards to monitor platform activity, operational performance, and service usage. Accelerated development using AI-assisted tools such as Anti-Gravity.",
+    overview: "Developed an internal admin platform integrated with Caarmaa mobile applications for managing booking services and user operations. This project serves as the backbone for Caarmaa's day-to-day business management.",
+    details: "The dashboard provides an exhaustive set of tools for the operations team. From managing a dynamic service catalog to handling complex user support tickets, the system is designed for high efficiency and real-time responsiveness. We implemented advanced analytics to provide stakeholders with actionable insights into service performance and user behavior.",
     features: [
-      "Booking service catalog control",
-      "User & Support management",
-      "Surge charge configuration",
-      "Real-time analytics dashboard"
+      "Dynamic service catalog management with real-time updates",
+      "Comprehensive User & Support management system",
+      "Flexible surge charge configuration for peak hours",
+      "Interactive data visualization for operational analytics",
+      "Role-based access control (RBAC) for security"
     ],
+    technicalDetails: "Built using React for the frontend with a highly modular component architecture. The backend is powered by Node.js and Express, connected to a MongoDB database for flexible schema-less data storage. We used Anti-Gravity to accelerate the development of complex data tables and analytics charts.",
     tags: ['React', 'Node.js', 'MongoDB', 'Express', 'Analytics', 'Anti-Gravity'],
     status: 'Production',
     hasLiveLink: false,
     liveUrl: '',
     accentColor: 'rgba(168, 85, 247, 0.1)',
-    screenshotCount: 4
+    screenshotCount: 1,
+    images: ['/images/projects/caarmaa_admin_1.png']
   },
   {
     id: 'caarmaa-car-care',
@@ -26,20 +29,23 @@ export const projects = [
     title: 'Caarmaa Car Care Website',
     category: 'Production',
     teaser: "Customer-facing service website with refined UI and responsiveness.",
-    overview: "Improved UI consistency, responsiveness, and interaction flow across multiple service pages of the Caarmaa customer website.",
-    details: "Used AI-assisted development tools including Lovable and Anti-Gravity to optimize interface design and accelerate front-end implementation.",
+    overview: "Improved UI consistency, responsiveness, and interaction flow across multiple service pages of the Caarmaa customer website, enhancing the overall user journey for booking car services.",
+    details: "This project focused on transforming the legacy website into a modern, high-performance platform. We prioritized visual excellence and smooth interactions to build trust with customers. The website now features a seamless booking flow that adapts perfectly to any device size.",
     features: [
-      "Responsive service pages",
-      "Refined UI/UX consistency",
-      "Optimized interaction flow",
-      "AI-accelerated development"
+      "Mobile-first responsive design for all screen sizes",
+      "Smooth micro-animations and transitions",
+      "Streamlined service booking flow",
+      "Integrated SEO best practices for better visibility",
+      "Optimized assets for fast loading times"
     ],
+    technicalDetails: "Leveraged modern CSS techniques and React to build a fast, reactive frontend. Used Lovable for rapid UI prototyping and Anti-Gravity for implementing complex state-driven interactions. The platform is optimized for performance and accessibility.",
     tags: ['React', 'CSS', 'Lovable', 'Anti-Gravity', 'Responsive Design'],
     status: 'Live',
     hasLiveLink: true,
-    liveUrl: '#', // Add Caarmaa Car Care URL
+    liveUrl: 'https://caarmaa.com', 
     accentColor: 'rgba(34, 211, 238, 0.1)',
-    screenshotCount: 3
+    screenshotCount: 1,
+    images: ['/images/projects/caarmaa_car_care_1.png']
   },
   {
     id: 'caarmaa-tech',
@@ -47,20 +53,23 @@ export const projects = [
     title: 'Caarmaa Tech Corporate Website',
     category: 'Production',
     teaser: "Official corporate website for Caarmaa Technologies Pvt. Ltd.",
-    overview: "Built the official company website for Caarmaa Technologies Pvt. Ltd. using AI-powered development tools such as Lovable.",
-    details: "Implemented modern, responsive UI components and structured content to effectively present company services and products.",
+    overview: "Built the official company website for Caarmaa Technologies Pvt. Ltd. to showcase their innovative solutions and corporate culture.",
+    details: "The corporate website acts as a digital portfolio for Caarmaa Tech, highlighting their expertise in mobility and technology. We used a clean, professional design language that reflects the company's forward-thinking approach. The site includes sections for services, products, and a dedicated career portal.",
     features: [
-      "Modern corporate UI",
-      "Service & Product presentation",
-      "Responsive components",
-      "Structured content layout"
+      "Modern corporate UI with professional aesthetics",
+      "Detailed service and product showcase",
+      "Interactive team and culture sections",
+      "Full responsiveness and cross-browser compatibility",
+      "Integrated contact and feedback forms"
     ],
+    technicalDetails: "Developed using React for a fast single-page application experience. Lovable was used to create high-fidelity mockups that were directly translated into production-ready code. The site architecture is designed for easy content updates and scalability.",
     tags: ['React', 'Lovable', 'Responsive Design', 'Corporate'],
     status: 'Live',
     hasLiveLink: true,
-    liveUrl: '#', // Add Caarmaa Tech corporate URL
+    liveUrl: 'https://caarmaatech.com', 
     accentColor: 'rgba(74, 222, 128, 0.1)',
-    screenshotCount: 3
+    screenshotCount: 1,
+    images: ['/images/projects/caarmaa_tech_1.png']
   },
   {
     id: 'caarmaa-billing',
@@ -68,20 +77,23 @@ export const projects = [
     title: 'Caarmaa Billing Dashboard',
     category: 'Production',
     teaser: "Internal finance dashboard tracking revenue, expenses, and cash flow.",
-    overview: "Built an internal billing and finance dashboard to track company revenue, expenses, and overall money flow.",
-    details: "Implemented analytics for monitoring collections and expenses to provide business-level financial insights. Designed modules to record, manage, and maintain financial transactions and operational costs.",
+    overview: "Built an internal billing and finance dashboard to provide the finance team with a clear, real-time view of company revenue and operational costs.",
+    details: "Finance management is critical for a growing startup. This dashboard automates the tracking of every transaction, categorized for easy analysis. It provides the leadership team with critical financial insights through intuitive charts and detailed reports on cash flow and profitability.",
     features: [
-      "Revenue & Expense tracking",
-      "Financial analytics modules",
-      "Cash flow monitoring",
-      "Transaction management"
+      "Real-time revenue and expense tracking",
+      "Automated financial report generation",
+      "Detailed cash flow monitoring and forecasting",
+      "Transaction history with advanced filtering",
+      "Exportable data for accounting integration"
     ],
+    technicalDetails: "A robust backend using Node.js and Express ensures data integrity and security. MongoDB handles the diverse set of financial records efficiently. The React frontend provides a responsive and intuitive interface for complex financial data entry and analysis.",
     tags: ['React', 'Node.js', 'MongoDB', 'Finance', 'Analytics'],
     status: 'Production',
     hasLiveLink: false,
     liveUrl: '',
     accentColor: 'rgba(168, 85, 247, 0.15)',
-    screenshotCount: 4
+    screenshotCount: 1,
+    images: ['/images/projects/caarmaa_billing_1.png']
   },
   {
     id: 'med-inventory',
@@ -89,19 +101,22 @@ export const projects = [
     title: 'Medical Inventory Management System',
     category: 'Personal',
     teaser: "Real-time medical inventory system with ML-powered demand forecasting.",
-    overview: "Built a real-time inventory system with stock tracking alerts and billing automation.",
-    details: "Implemented demand forecasting using an LSTM model. Created an analytics dashboard using MERN Stack. Integrated WHO's API to retrieve real-time global outbreak data.",
+    overview: "Built a sophisticated medical inventory system that uses Machine Learning to predict stock requirements and prevent shortages in healthcare facilities.",
+    details: "In healthcare, inventory management can be life-critical. This project integrates a custom-trained LSTM model to forecast demand for medicines based on historical data and global trends. It also connects to the WHO API to stay updated on potential outbreaks, allowing hospitals to prepare in advance.",
     features: [
-      "LSTM-powered demand forecasting",
-      "Real-time stock alerts",
-      "WHO API integration",
-      "Billing automation"
+      "ML-powered demand forecasting (LSTM)",
+      "Real-time stock level alerts and notifications",
+      "WHO Global Outbreak data integration",
+      "Automated billing and supplier management",
+      "Comprehensive medical inventory analytics"
     ],
+    technicalDetails: "The core is built on the MERN stack. The Machine Learning component uses Python and TensorFlow to build the LSTM model, which is integrated into the system via a REST API. WHO data is fetched in real-time to provide context for AI-driven inventory suggestions.",
     tags: ['MERN Stack', 'LSTM', 'Python', 'WHO API', 'Machine Learning'],
     status: 'Personal',
     hasLiveLink: false,
     liveUrl: '',
     accentColor: 'rgba(34, 211, 238, 0.1)',
-    screenshotCount: 3
+    screenshotCount: 1,
+    images: ['/images/projects/med_inventory_1.png']
   }
 ];
