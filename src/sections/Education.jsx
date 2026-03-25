@@ -32,19 +32,22 @@ const TimelineNode = ({ item }) => (
       flex: 1,
       minWidth: '320px',
       padding: '40px',
-      background: 'var(--bg-surface-low)',
-      border: '1px solid var(--border-ghost)',
+      background: 'var(--bg-base)',
       borderRadius: '24px',
-      backdropFilter: 'var(--glass-blur)',
-      WebkitBackdropFilter: 'var(--glass-blur)',
       display: 'flex',
       flexDirection: 'column',
       justifyContent: 'space-between',
       position: 'relative',
-      transition: 'background 0.4s var(--ease-cinematic), border-color 0.4s var(--ease-cinematic)'
+      overflow: 'hidden',
+      isolation: 'isolate',
+      transition: 'transform 0.4s var(--ease-cinematic)'
     }}
   >
-    <div>
+    {/* Animated Gradient Border Overlay */}
+    <div className="gradient-border-mask"></div>
+    <div className="gradient-border-animation"></div>
+    
+    <div style={{ position: 'relative', zIndex: 2 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '24px', gap: '8px' }}>
         <h3 style={{ fontSize: '1.5rem', color: 'var(--text-primary)', fontWeight: 700, lineHeight: 1.2, fontFamily: 'var(--ff-display)', letterSpacing: 'var(--ff-letter-spacing-tight)' }}>{item.institution}</h3>
         {item.badge && (
@@ -61,7 +64,7 @@ const TimelineNode = ({ item }) => (
       </div>
       <p style={{ fontSize: '1rem', color: 'var(--text-secondary)', marginBottom: '16px', fontWeight: 400 }}>{item.degree}</p>
     </div>
-    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid var(--border-ghost)', paddingTop: '20px' }}>
+    <div style={{ display: 'flex', alignItems: 'center', gap: '8px', borderTop: '1px solid rgba(255,255,255,0.05)', paddingTop: '20px', position: 'relative', zIndex: 2 }}>
       <span className="label-sm" style={{ color: 'var(--text-muted)' }}>{item.duration}</span>
     </div>
   </motion.div>
@@ -146,4 +149,48 @@ const Education = () => {
   );
 };
 
-export default Education;
+const styles = `
+  .gradient-border-animation {
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent,
+      var(--accent-green),
+      var(--accent-blue),
+      var(--accent-purple),
+      var(--accent-green),
+      transparent
+    );
+    animation: rotate-gradient 4s linear infinite;
+    z-index: 0;
+    opacity: 0.4;
+    filter: blur(20px);
+  }
+
+  .gradient-border-mask {
+    position: absolute;
+    inset: 1px;
+    background: var(--bg-base);
+    border-radius: 23px;
+    z-index: 1;
+  }
+
+  @keyframes rotate-gradient {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .theme-black .gradient-border-mask {
+    background: #0a0a0a;
+  }
+`;
+
+const EducationWithStyles = () => (
+  <>
+    <style>{styles}</style>
+    <Education />
+  </>
+);
+
+export default EducationWithStyles;

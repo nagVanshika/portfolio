@@ -1,51 +1,90 @@
 import React, { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import '../styles/variables.css';
+import { 
+  RiJavascriptFill, RiReactjsFill, RiHtml5Fill, RiCss3Fill, RiNodejsFill, 
+  RiGitBranchFill, RiGithubFill, RiCloudFill, RiCommandLine
+} from 'react-icons/ri';
+import { 
+  SiNextdotjs, SiExpress, SiMysql, SiMongodb, SiTensorflow, SiPytorch, 
+  SiFramer, SiVite, SiTailwindcss, SiMui
+} from 'react-icons/si';
+import { FiCode, FiCpu, FiDatabase, FiLayers, FiZap, FiMousePointer, FiActivity } from 'react-icons/fi';
+import { TbBrandReactNative, TbBrandNextjs } from 'react-icons/tb';
 
 const skillCategories = [
   {
     category: "Frontend",
-    skills: ["JavaScript", "React.js", "Next.js", "React Native", "HTML", "CSS"]
+    skills: [
+      { name: "JavaScript", icon: <RiJavascriptFill color="#f7df1e" /> },
+      { name: "React.js", icon: <RiReactjsFill color="#61dafb" /> },
+      { name: "Next.js", icon: <SiNextdotjs color="#fff" /> },
+      { name: "React Native", icon: <TbBrandReactNative color="#61dafb" /> },
+      { name: "HTML", icon: <RiHtml5Fill color="#e34f26" /> },
+      { name: "CSS", icon: <RiCss3Fill color="#1572b6" /> }
+    ]
   },
   {
     category: "Backend",
-    skills: ["Node.js", "Express.js"]
+    skills: [
+      { name: "Node.js", icon: <RiNodejsFill color="#339933" /> },
+      { name: "Express.js", icon: <SiExpress color="#fff" /> }
+    ]
   },
   {
     category: "Database",
-    skills: ["MySQL", "MongoDB"]
+    skills: [
+      { name: "MySQL", icon: <SiMysql color="#4479a1" /> },
+      { name: "MongoDB", icon: <SiMongodb color="#47a248" /> }
+    ]
   },
   {
     category: "Machine Learning",
-    skills: ["LSTM"]
+    skills: [
+      { name: "LSTM", icon: <FiActivity color="#ff6f00" /> }
+    ]
   },
   {
     category: "Tools & AI",
-    skills: ["Git", "GitHub", "Anti-Gravity", "Codex", "Lovable", "Cursor", "Open Code", "Emergent", "Cloud"]
+    skills: [
+      { name: "Git", icon: <RiGitBranchFill color="#f05032" /> },
+      { name: "GitHub", icon: <RiGithubFill color="#fff" /> },
+      { name: "Anti-Gravity", icon: <FiZap color="#ff9f43" /> },
+      { name: "Codex", icon: <FiCode color="#4fb8ff" /> },
+      { name: "Lovable", icon: <FiLayers color="#7b5ff5" /> },
+      { name: "Cursor", icon: <FiMousePointer color="#00e5a0" /> },
+      { name: "Open Code", icon: <RiCommandLine color="#fff" /> },
+      { name: "Emergent", icon: <FiCpu color="#00e5a0" /> },
+      { name: "Cloud", icon: <RiCloudFill color="#4fb8ff" /> }
+    ]
   }
 ];
 
-const SkillPill = ({ skill }) => (
-  <motion.span
+const SkillPill = ({ name, icon }) => (
+  <motion.div
     whileHover={{ 
       borderColor: 'var(--accent-green)', 
       color: 'var(--accent-green)',
-      boxShadow: '0 0 10px rgba(0, 229, 160, 0.1)'
+      boxShadow: '0 0 15px rgba(0, 229, 160, 0.2)',
+      y: -5
     }}
     style={{
-      padding: '6px 14px',
-      fontSize: '0.8rem',
-      fontWeight: 500,
+      padding: '10px 18px',
+      display: 'flex',
+      alignItems: 'center',
+      gap: '12px',
+      fontSize: '0.9rem',
+      fontWeight: 600,
       color: 'rgba(255, 255, 255, 0.9)',
       backgroundColor: 'rgba(255, 255, 255, 0.05)',
       border: '1px solid rgba(255, 255, 255, 0.1)',
-      borderRadius: '12px',
+      borderRadius: '16px',
       cursor: 'default',
-      transition: 'all 0.3s ease'
+      transition: 'all 0.3s var(--ease-cinematic)'
     }}
   >
-    {skill}
-  </motion.span>
+    <span style={{ fontSize: '1.2rem', display: 'flex' }}>{icon}</span>
+    {name}
+  </motion.div>
 );
 
 const Skills = () => {
@@ -65,14 +104,14 @@ const Skills = () => {
       ref={sectionRef}
       className="section-overlap" 
       style={{ 
-        position: 'sticky',
-        top: 0,
-        height: '80vh',
+        minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
+        padding: '120px 0',
         background: 'var(--bg-emerald)', // Deep green background
         zIndex: 5,
-        overflow: 'hidden'
+        overflow: 'hidden',
+        position: 'relative' // Remove sticky for better visibility of scrolling content
       }}
     >
       <motion.div 
@@ -80,7 +119,12 @@ const Skills = () => {
         style={{ 
           maxWidth: '1100px', 
           margin: '0 auto',
-          width: '100%',
+          width: '90%',
+          padding: '40px',
+          background: 'rgba(255,255,255,0.02)',
+          borderRadius: '40px',
+          border: '1px solid rgba(255,255,255,0.05)',
+          backdropFilter: 'blur(10px)',
           y,
           opacity,
           scale
@@ -103,15 +147,17 @@ const Skills = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             style={{ 
-              fontSize: 'clamp(2.5rem, 5vw, 4.5rem)', 
+              fontSize: 'clamp(4rem, 12vw, 9rem)', 
               fontWeight: 800, 
-              color: '#fff', 
-              letterSpacing: 'var(--ff-letter-spacing-tight)',
+              color: 'transparent',
+              WebkitTextStroke: '2px rgba(255, 255, 255, 0.3)',
+              letterSpacing: '-0.02em',
               fontFamily: 'var(--ff-display)',
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
+              lineHeight: 0.9
             }}
           >
-            Technical Stack
+            Technical<br/>Stack
           </motion.h2>
         </div>
 
@@ -157,9 +203,9 @@ const Skills = () => {
                 </h3>
               </div>
               
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '12px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '16px' }}>
                 {cat.skills.map((skill) => (
-                  <SkillPill key={skill} skill={skill} />
+                  <SkillPill key={skill.name} name={skill.name} icon={skill.icon} />
                 ))}
               </div>
             </motion.div>
