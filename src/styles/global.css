@@ -177,6 +177,13 @@ section {
   padding-bottom: calc(var(--section-radius) + 60px) !important;
 }
 
+@media (max-width: 768px) {
+  .section-overlap {
+    padding-top: calc(var(--section-radius) + 60px) !important;
+    padding-bottom: calc(var(--section-radius) + 40px) !important;
+  }
+}
+
 /* Ensure headings in white theme are black */
 .theme-white h1, 
 .theme-white h2, 

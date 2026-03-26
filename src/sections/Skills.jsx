@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { 
   RiJavascriptFill, RiReactjsFill, RiHtml5Fill, RiCss3Fill, RiNodejsFill, 
@@ -89,6 +89,15 @@ const SkillPill = ({ name, icon }) => (
 
 const Skills = () => {
   const sectionRef = useRef(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"]
@@ -120,14 +129,14 @@ const Skills = () => {
           maxWidth: '1100px', 
           margin: '0 auto',
           width: '90%',
-          padding: '40px',
+          padding: 'clamp(20px, 5vw, 40px)',
           background: 'rgba(255,255,255,0.02)',
           borderRadius: '40px',
           border: '1px solid rgba(255,255,255,0.05)',
           backdropFilter: 'blur(10px)',
-          y,
-          opacity,
-          scale
+          y: isMobile ? 0 : y,
+          opacity: isMobile ? 1 : opacity,
+          scale: isMobile ? 1 : scale
         }}
       >
         
@@ -147,7 +156,7 @@ const Skills = () => {
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
             style={{ 
-              fontSize: 'clamp(4rem, 12vw, 9rem)', 
+              fontSize: 'clamp(2.5rem, 11vw, 9rem)', 
               fontWeight: 800, 
               color: 'transparent',
               WebkitTextStroke: '2px rgba(255, 255, 255, 0.3)',
