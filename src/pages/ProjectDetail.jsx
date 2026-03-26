@@ -40,7 +40,7 @@ const ProjectDetail = () => {
       style={{ padding: '160px 8% 100px', minHeight: '100vh', backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}
     >
       <div className="container" style={{ maxWidth: 'var(--container-max-width)', margin: '0 auto' }}>
-        <Link to="/" style={{ color: 'var(--text-muted)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '40px', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase' }} className="hover-white">
+        <Link to="/#projects" style={{ color: 'var(--text-muted)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '40px', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase' }} className="hover-white">
           <FiArrowLeft /> Back to Portfolio
         </Link>
         
@@ -121,6 +121,8 @@ const ProjectDetail = () => {
             {project.hasLiveLink && (
               <motion.a
                 href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, translateY: -2 }}
                 whileTap={{ scale: 0.98 }}
                 style={{
@@ -148,13 +150,66 @@ const ProjectDetail = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            <h3 className="label-sm" style={{ color: '#fff', marginBottom: '40px' }}>Visual Gallery</h3>
+            <h3 className="label-sm" style={{ color: '#fff', marginBottom: '40px' }}>{project.isLiveProject ? 'Live Preview' : 'Visual Gallery'}</h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
-              {project.images?.map((img, index) => (
+              {project.isLiveProject && project.liveUrl ? (
+                <div style={{
+                  backgroundColor: 'var(--bg-surface-low)',
+                  border: '1px solid var(--border-ghost)',
+                  borderRadius: '24px',
+                  aspectRatio: '16/10',
+                  overflow: 'hidden',
+                  position: 'relative',
+                  backdropFilter: 'var(--glass-blur)',
+                  WebkitBackdropFilter: 'var(--glass-blur)',
+                }}>
+                  <iframe 
+                    src={project.liveUrl} 
+                    title={`${project.title} live preview`}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      border: 'none',
+                      backgroundColor: '#fff'
+                    }}
+                  />
+                  {/* Subtle overlay to prevent interaction issues while scrolling the page */}
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '40px',
+                    background: 'linear-gradient(to bottom, rgba(0,0,0,0.5), transparent)',
+                    pointerEvents: 'none',
+                    zIndex: 10
+                  }} />
+                  <a 
+                    href={project.liveUrl} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    style={{
+                      position: 'absolute',
+                      bottom: '24px',
+                      right: '24px',
+                      padding: '10px 20px',
+                      background: 'var(--accent-green)',
+                      color: '#000',
+                      borderRadius: '100px',
+                      fontSize: '0.8rem',
+                      fontWeight: 800,
+                      textDecoration: 'none',
+                      zIndex: 20,
+                      boxShadow: '0 4px 15px rgba(0, 229, 160, 0.3)'
+                    }}
+                  >
+                    Open Full Site
+                  </a>
+                </div>
+              ) : project.images && project.images.length > 0 && (
                 <motion.div
-                  key={index}
                   whileHover={{ scale: 1.02 }}
-                  onClick={() => openLightbox(index)}
+                  onClick={() => openLightbox(0)}
                   style={{
                     backgroundColor: 'var(--bg-surface-low)',
                     border: '1px solid var(--border-ghost)',
@@ -170,13 +225,37 @@ const ProjectDetail = () => {
                     WebkitBackdropFilter: 'var(--glass-blur)',
                     transition: 'border-color 0.3s'
                   }}
-                  className="gallery-item"
+                  className="gallery-item featured"
                 >
                   <img 
-                    src={img} 
-                    alt={`${project.title} screenshot ${index + 1}`} 
+                    src={project.images[0]} 
+                    alt={`${project.title} featured screenshot`} 
                     style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                   />
+                  
+                  {/* Overlay for multiple images */}
+                  {project.images.length > 1 && (
+                    <div style={{
+                      position: 'absolute',
+                      bottom: '24px',
+                      right: '24px',
+                      padding: '12px 20px',
+                      background: 'rgba(0,0,0,0.6)',
+                      backdropFilter: 'blur(10px)',
+                      borderRadius: '100px',
+                      border: '1px solid rgba(255,255,255,0.1)',
+                      color: '#fff',
+                      fontSize: '0.875rem',
+                      fontWeight: 700,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      <span>View Gallery</span>
+                      <span style={{ opacity: 0.6 }}>({project.images.length} images)</span>
+                    </div>
+                  )}
+
                   <div style={{ 
                     position: 'absolute', 
                     top: 0, 
@@ -187,7 +266,7 @@ const ProjectDetail = () => {
                     pointerEvents: 'none'
                   }} />
                 </motion.div>
-              ))}
+              )}
             </div>
           </motion.div>
 

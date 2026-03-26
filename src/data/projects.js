@@ -20,8 +20,15 @@ export const projects = [
     hasLiveLink: false,
     liveUrl: '',
     accentColor: 'rgba(168, 85, 247, 0.1)',
-    screenshotCount: 1,
-    images: ['/images/projects/caarmaa_admin_1.png']
+    screenshotCount: 6,
+    images: [
+      '/images/projects/caarmaa_admin_1.png',
+      '/images/projects/carmaa_admin1a.jpg',
+      '/images/projects/carmaa_admin1b.jpg',
+      '/images/projects/carmaa_admin1c.jpg',
+      '/images/projects/carmaa_admin1d.png',
+      '/images/projects/carmaa_admin1e.png'
+    ]
   },
   {
     id: 'caarmaa-car-care',
@@ -42,7 +49,8 @@ export const projects = [
     tags: ['React', 'CSS', 'Lovable', 'Anti-Gravity', 'Responsive Design'],
     status: 'Live',
     hasLiveLink: true,
-    liveUrl: 'https://caarmaa.com', 
+    isLiveProject: true,
+    liveUrl: 'https://carmaacarcare.com', 
     accentColor: 'rgba(34, 211, 238, 0.1)',
     screenshotCount: 1,
     images: ['/images/projects/caarmaa_car_care_1.png']
@@ -66,7 +74,8 @@ export const projects = [
     tags: ['React', 'Lovable', 'Responsive Design', 'Corporate'],
     status: 'Live',
     hasLiveLink: true,
-    liveUrl: 'https://caarmaatech.com', 
+    isLiveProject: true,
+    liveUrl: 'https://carmaatech.com', 
     accentColor: 'rgba(74, 222, 128, 0.1)',
     screenshotCount: 1,
     images: ['/images/projects/caarmaa_tech_1.png']
@@ -92,8 +101,13 @@ export const projects = [
     hasLiveLink: false,
     liveUrl: '',
     accentColor: 'rgba(168, 85, 247, 0.15)',
-    screenshotCount: 1,
-    images: ['/images/projects/caarmaa_billing_1.png']
+    screenshotCount: 4,
+    images: [
+      '/images/projects/carmaabilling_1.jpg',
+      '/images/projects/carmaabilling1a.jpg',
+      '/images/projects/carmaabilling1b.jpg',
+      '/images/projects/carmaabilling1c.jpg'
+    ]
   },
   {
     id: 'med-inventory',
@@ -116,7 +130,16 @@ export const projects = [
     hasLiveLink: false,
     liveUrl: '',
     accentColor: 'rgba(34, 211, 238, 0.1)',
-    screenshotCount: 1,
-    images: ['/images/projects/med_inventory_1.png']
+    screenshotCount: 8,
+    images: [
+      '/images/projects/med_inventory_1.jpeg',
+      '/images/projects/med_inventory_1a.jpeg',
+      '/images/projects/med_inventory_1b.jpeg',
+      '/images/projects/med_inventory_1c.jpeg',
+      '/images/projects/med_inventory_1d.jpeg',
+      '/images/projects/med_inventory_1e.jpeg',
+      '/images/projects/med_inventory_1f.jpeg',
+      '/images/projects/med_inventory_1g.jpg'
+    ]
   }
 ];

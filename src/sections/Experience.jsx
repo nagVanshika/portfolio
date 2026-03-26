@@ -44,15 +44,15 @@ const Experience = () => {
   ];
 
   const techTags = ["React", "Next.js", "Node.js", "MERN Stack", "Dashboards", "REST APIs"];
-  
+
 
   return (
     <section id="experience" className="theme-white section-overlap" style={{ zIndex: 3 }}>
       <div className="container" style={{ maxWidth: 'var(--container-max-width)', margin: '0 auto' }}>
-        
+
         {/* Section Header */}
         <div style={{ position: 'relative', paddingBottom: '40px', borderBottom: '1px solid var(--border-ghost)', marginBottom: '80px' }}>
-          <motion.span 
+          <motion.span
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -61,7 +61,7 @@ const Experience = () => {
             Work History
           </motion.span>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
-            <motion.h2 
+            <motion.h2
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -74,7 +74,7 @@ const Experience = () => {
 
         {/* Two Column Layout */}
         <div className="exp-scroll-wrap" style={{ display: 'grid', gridTemplateColumns: '1fr 1.45fr', gap: '80px', alignItems: 'start' }}>
-          
+
           {/* Left Column (Sticky) */}
           <div className="exp-left" style={{ position: 'sticky', top: 'calc(var(--nav-h) + 32px)', alignSelf: 'start' }}>
             {/* Pulsing Badge */}
@@ -84,10 +84,10 @@ const Experience = () => {
             </div>
 
             <h3 style={{ fontSize: '3.5rem', fontFamily: 'var(--ff-display)', color: 'var(--accent-green)', lineHeight: '1', marginBottom: '16px', textTransform: 'uppercase' }}>
-              WEB DEVELOPER<br/>INTERN
+              WEB DEVELOPER
             </h3>
             <p style={{ fontSize: '1.25rem', color: 'var(--text-primary)', fontWeight: 500, marginBottom: '8px' }}>Carmaa Technologies Pvt Ltd</p>
-            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '32px' }}>2024 — Present · Internship</p>
+            <p style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginBottom: '32px' }}>July,25 — Present </p>
 
             <div style={{ borderLeft: '4px solid var(--accent-green)', paddingLeft: '24px', marginBottom: '40px' }}>
               <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: '1.6' }}>
@@ -109,7 +109,7 @@ const Experience = () => {
           {/* Right Column (Scroll Stack) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             {contributions.map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 48, scale: 0.98 }}
                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -130,22 +130,22 @@ const Experience = () => {
                   border: '1px solid rgba(0, 229, 160, 0.05)',
                   boxShadow: `0 10px 30px -10px rgba(0, 66, 58, 0.4)`
                 }}
-                whileHover={{ 
-                  x: 5, 
+                whileHover={{
+                  x: 5,
                   scale: 1.01,
                   filter: 'brightness(1.1)',
                   boxShadow: `0 20px 40px -10px rgba(0, 66, 58, 0.6)`
                 }}
               >
                 {/* Icon Badge */}
-                <div style={{ 
-                  width: '64px', 
-                  height: '64px', 
+                <div style={{
+                  width: '64px',
+                  height: '64px',
                   minWidth: '64px',
-                  borderRadius: '16px', 
-                  background: 'rgba(255, 255, 255, 0.15)', 
-                  display: 'flex', 
-                  alignItems: 'center', 
+                  borderRadius: '16px',
+                  background: 'rgba(255, 255, 255, 0.15)',
+                  display: 'flex',
+                  alignItems: 'center',
                   justifyContent: 'center',
                   color: '#fff',
                   fontSize: '1.8rem',
@@ -161,9 +161,9 @@ const Experience = () => {
                 </div>
 
                 {/* Number Overlay */}
-                <div style={{ 
-                  fontSize: '3rem', 
-                  fontFamily: 'var(--ff-display)', 
+                <div style={{
+                  fontSize: '3rem',
+                  fontFamily: 'var(--ff-display)',
                   color: 'transparent',
                   WebkitTextStroke: '1px rgba(255, 255, 255, 0.15)',
                   marginLeft: '20px'

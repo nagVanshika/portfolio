@@ -16,7 +16,7 @@ const Hero = () => {
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: { staggerChildren: 0.1, delayChildren: 0.2 }
     }
@@ -24,8 +24,8 @@ const Hero = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
+    visible: {
+      opacity: 1,
       y: 0,
       transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
     }
@@ -39,14 +39,14 @@ const Hero = () => {
   ];
 
   return (
-    <section 
-      id="hero" 
+    <section
+      id="hero"
       ref={containerRef}
-      className="theme-white" 
-      style={{ 
-        minHeight: '100vh', 
-        display: 'flex', 
-        alignItems: 'center', 
+      className="theme-white"
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        alignItems: 'center',
         padding: 'var(--section-padding)',
         position: 'sticky',
         top: 0,
@@ -55,7 +55,7 @@ const Hero = () => {
         zIndex: 0
       }}
     >
-      <motion.div 
+      <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -97,9 +97,9 @@ const Hero = () => {
 
           {/* Name Display */}
           <motion.div variants={itemVariants} style={{ marginBottom: '32px' }}>
-            <h1 style={{ 
-              fontSize: 'clamp(5rem, 10vw, 9rem)', 
-              lineHeight: '1', 
+            <h1 style={{
+              fontSize: 'clamp(5rem, 10vw, 9rem)',
+              lineHeight: '1',
               fontFamily: 'var(--ff-display)',
               color: 'var(--text-primary)',
               textTransform: 'uppercase',
@@ -107,9 +107,9 @@ const Hero = () => {
             }}>
               VANSHIKA
             </h1>
-            <h1 style={{ 
-              fontSize: 'clamp(5rem, 10vw, 9rem)', 
-              lineHeight: '1.1', 
+            <h1 style={{
+              fontSize: 'clamp(5rem, 10vw, 9rem)',
+              lineHeight: '1.1',
               fontFamily: 'var(--ff-display)',
               color: 'transparent',
               WebkitTextStroke: '2px var(--text-primary)',
@@ -132,7 +132,7 @@ const Hero = () => {
               fontWeight: 500
             }}
           >
-            Full-stack developer student at Carmaa Tech. Dedicated to crafting pixel-perfect, performance-driven digital experiences with modern web technologies.
+            Full-stack developer at Carmaa Technologies Pvt. Ltd. Dedicated to crafting pixel-perfect, performance-driven digital experiences with modern web technologies.
           </motion.p>
 
           {/* Buttons */}
@@ -179,10 +179,10 @@ const Hero = () => {
         {/* Right Column */}
         <div style={{ display: 'flex', flexDirection: 'column', gap: '32px' }}>
           {/* Grid Layout Container */}
-          <div style={{ 
-            display: 'grid', 
+          <div style={{
+            display: 'grid',
             gridTemplateColumns: 'minmax(250px, 1fr) minmax(250px, 1fr)',
-            gap: '24px' 
+            gap: '24px'
           }}>
             {cards.map((card, i) => (
               <motion.div
@@ -202,8 +202,8 @@ const Hero = () => {
                   boxShadow: `0 10px 30px -10px rgba(0, 66, 58, 0.4)`,
                   transition: 'all 0.4s var(--ease-cinematic)'
                 }}
-                whileHover={{ 
-                  y: -12, 
+                whileHover={{
+                  y: -12,
                   boxShadow: `0 30px 60px -15px rgba(0, 66, 58, 0.6)`,
                   filter: 'brightness(1.1)',
                   borderColor: 'rgba(0, 229, 160, 0.2)'
@@ -221,10 +221,10 @@ const Hero = () => {
                   pointerEvents: 'none'
                 }} />
 
-                <div style={{ 
-                  width: '56px', 
-                  height: '56px', 
-                  borderRadius: '18px', 
+                <div style={{
+                  width: '56px',
+                  height: '56px',
+                  borderRadius: '18px',
                   background: 'rgba(255, 255, 255, 0.2)',
                   display: 'flex',
                   alignItems: 'center',
@@ -236,12 +236,12 @@ const Hero = () => {
                 }}>
                   {card.icon}
                 </div>
-                
+
                 <div>
-                  <h3 style={{ 
-                    fontSize: '1.25rem', 
-                    fontWeight: 700, 
-                    color: '#fff', 
+                  <h3 style={{
+                    fontSize: '1.25rem',
+                    fontWeight: 700,
+                    color: '#fff',
                     marginBottom: '12px',
                     fontFamily: 'var(--ff-display)',
                     textTransform: 'uppercase',
@@ -249,8 +249,8 @@ const Hero = () => {
                   }}>
                     {card.title}
                   </h3>
-                  <p style={{ 
-                    fontSize: '0.95rem', 
+                  <p style={{
+                    fontSize: '0.95rem',
                     color: 'rgba(255, 255, 255, 0.9)',
                     lineHeight: '1.6',
                     fontWeight: 500

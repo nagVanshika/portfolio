@@ -61,9 +61,6 @@ const Projects = () => {
     }
   ];
 
-  const visibleCount = visibleProjects.size;
-  const progressWidth = (visibleCount / 5) * 100;
-
   return (
     <section id="projects" className="theme-black section-overlap" style={{ zIndex: 4 }}>
       <div style={{ maxWidth: 'var(--container-max-width)', margin: '0 auto' }}>
@@ -89,21 +86,6 @@ const Projects = () => {
             <p style={{ fontSize: '1.2rem', color: 'var(--text-secondary)', lineHeight: '1.6', marginBottom: '60px', maxWidth: '400px' }}>
               A collection of production-grade projects built at Carmaa Technologies and beyond, focusing on scalability and user experience.
             </p>
-
-            {/* Progress Bar */}
-            <div style={{ maxWidth: '300px' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '12px' }}>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--text-muted)', textTransform: 'uppercase' }}>Milestones</span>
-                <span style={{ fontSize: '0.85rem', fontWeight: 700, color: 'var(--accent-green)' }}>{visibleCount} / 4</span>
-              </div>
-              <div style={{ height: '4px', width: '100%', background: '#1a1a1a', borderRadius: '10px', overflow: 'hidden' }}>
-                <motion.div 
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progressWidth}%` }}
-                  style={{ height: '100%', background: 'var(--accent-green)', boxShadow: '0 0 10px var(--accent-green)' }} 
-                />
-              </div>
-            </div>
           </div>
 
           {/* Right Column (Scroll Stack) */}

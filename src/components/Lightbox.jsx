@@ -43,27 +43,44 @@ const Lightbox = ({ images, currentIndex, isOpen, onClose, onPrev, onNext }) => 
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
-            style={{ maxWidth: '100%', maxHeight: '100%', position: 'relative' }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Placeholder Image in Lightbox */}
-            <div style={{
-              width: '1200px',
-              maxWidth: '90vw',
-              aspectRatio: '16/9',
-              backgroundColor: 'var(--bg-surface)',
-              border: '1px solid var(--border-hairline)',
+            transition={{ duration: 0.3, ease: 'easeOut' }}
+            style={{ 
+              maxWidth: '92vw', 
+              maxHeight: '85vh', 
+              position: 'relative',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              borderRadius: '8px',
-              overflow: 'hidden'
-            }}>
-              <div style={{ textAlign: 'center' }}>
-                <span style={{ fontSize: '3rem', color: 'var(--text-muted)', fontFamily: 'var(--ff-display)' }}>Screenshot {currentIndex + 1}</span>
-                <p style={{ color: 'var(--text-muted)', marginTop: '1rem' }}>{/* Replace with actual screenshot */}</p>
-              </div>
-            </div>
+              cursor: 'grab'
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={0.2}
+            onDragEnd={(e, { offset, velocity }) => {
+              const swipe = offset.x;
+              const swipeThreshold = 50;
+              if (swipe < -swipeThreshold) {
+                onNext();
+              } else if (swipe > swipeThreshold) {
+                onPrev();
+              }
+            }}
+            whileTap={{ cursor: 'grabbing' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={images[currentIndex]} 
+              alt={`Project screenshot ${currentIndex + 1}`}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+                borderRadius: '12px',
+                boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                pointerEvents: 'none' // Prevent image from interfering with drag
+              }}
+            />
           </motion.div>
 
           <button 
