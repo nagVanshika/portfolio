@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { FiArrowUpRight, FiLayers, FiZap, FiCode, FiSmartphone } from 'react-icons/fi';
 import '../styles/variables.css';
@@ -9,6 +9,15 @@ const Hero = () => {
     target: containerRef,
     offset: ["start start", "end start"]
   });
+
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 1100);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const heroY = useTransform(scrollYProgress, [0, 1], [0, -300]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
@@ -42,15 +51,14 @@ const Hero = () => {
     <section
       id="hero"
       ref={containerRef}
-      className="theme-white"
+      className="theme-white hero-section"
       style={{
         minHeight: '100vh',
         display: 'flex',
         alignItems: 'center',
         padding: 'var(--section-padding)',
-        position: 'sticky',
-        top: 0,
-        overflow: 'hidden',
+        position: 'relative', // Changed from sticky for better mobile flow
+        overflow: 'visible',
         background: 'var(--bg-white)',
         zIndex: 0
       }}
@@ -67,9 +75,9 @@ const Hero = () => {
           maxWidth: 'var(--container-max-width)',
           margin: '0 auto',
           alignItems: 'center',
-          y: heroY,
-          opacity: heroOpacity,
-          scale: heroScale
+          y: isMobile ? 0 : heroY,
+          opacity: isMobile ? 1 : heroOpacity,
+          scale: isMobile ? 1 : heroScale
         }}
         className="hero-grid"
       >
@@ -98,7 +106,7 @@ const Hero = () => {
           {/* Name Display */}
           <motion.div variants={itemVariants} style={{ marginBottom: '32px' }}>
             <h1 style={{
-              fontSize: 'clamp(5rem, 10vw, 9rem)',
+              fontSize: 'clamp(3.5rem, 15vw, 9rem)',
               lineHeight: '1',
               fontFamily: 'var(--ff-display)',
               color: 'var(--text-primary)',
@@ -108,7 +116,7 @@ const Hero = () => {
               VANSHIKA
             </h1>
             <h1 style={{
-              fontSize: 'clamp(5rem, 10vw, 9rem)',
+              fontSize: 'clamp(3.5rem, 15vw, 9rem)',
               lineHeight: '1.1',
               fontFamily: 'var(--ff-display)',
               color: 'transparent',
@@ -181,8 +189,9 @@ const Hero = () => {
           {/* Grid Layout Container */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: 'minmax(250px, 1fr) minmax(250px, 1fr)',
-            gap: '24px'
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))',
+            gap: '24px',
+            width: '100%'
           }}>
             {cards.map((card, i) => (
               <motion.div
@@ -192,7 +201,7 @@ const Hero = () => {
                 style={{
                   background: card.color,
                   borderRadius: '32px',
-                  padding: '40px',
+                  padding: 'clamp(24px, 5vw, 40px)',
                   position: 'relative',
                   overflow: 'hidden',
                   display: 'flex',
@@ -281,11 +290,24 @@ const Hero = () => {
           50% { transform: scale(1.5); opacity: 0.5; }
           100% { transform: scale(1); opacity: 1; }
         }
+        @media (min-width: 1101px) {
+          .hero-section {
+            position: sticky !important;
+            top: 0;
+            overflow: hidden !important;
+          }
+        }
         @media (max-width: 1100px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 60px !important; text-align: center; }
           .hero-grid p { margin-left: auto; margin-right: auto; }
           .hero-grid div { align-items: center; }
           div[style*="flexDirection: column"] { align-items: center !important; }
+          div[variants] { width: 100% !important; }
+        }
+        @media (max-width: 640px) {
+          .hero-grid { gap: 48px !important; }
+          div[style*="display: flex; gap: 20px"] { flex-direction: column; width: 100%; }
+          div[style*="display: flex; gap: 20px"] a { justify-content: center; width: 100%; }
         }
       `}</style>
     </section>

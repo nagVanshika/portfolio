@@ -65,7 +65,7 @@ const Experience = () => {
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              style={{ fontSize: 'clamp(3.5rem, 8vw, 7rem)', fontFamily: 'var(--ff-display)', color: 'var(--accent-green)', margin: 0, lineHeight: 0.9 }}
+              style={{ fontSize: 'clamp(2.5rem, 10vw, 7rem)', fontFamily: 'var(--ff-display)', color: 'var(--accent-green)', margin: 0, lineHeight: 0.9 }}
             >
               EXPERIENCE
             </motion.h2>
@@ -83,7 +83,7 @@ const Experience = () => {
               <span style={{ fontSize: '0.75rem', fontWeight: 700, color: 'var(--accent-green)', letterSpacing: '0.05em' }}>CURRENT ROLE</span>
             </div>
 
-            <h3 style={{ fontSize: '3.5rem', fontFamily: 'var(--ff-display)', color: 'var(--accent-green)', lineHeight: '1', marginBottom: '16px', textTransform: 'uppercase' }}>
+            <h3 style={{ fontSize: 'clamp(2rem, 8vw, 3.5rem)', fontFamily: 'var(--ff-display)', color: 'var(--accent-green)', lineHeight: '1', marginBottom: '16px', textTransform: 'uppercase' }}>
               WEB DEVELOPER
             </h3>
             <p style={{ fontSize: '1.25rem', color: 'var(--text-primary)', fontWeight: 500, marginBottom: '8px' }}>Carmaa Technologies Pvt Ltd</p>
@@ -120,10 +120,10 @@ const Experience = () => {
                   background: item.color,
                   backgroundImage: 'radial-gradient(circle at top right, rgba(0, 229, 160, 0.05) 0%, transparent 70%)',
                   borderRadius: '24px',
-                  padding: '32px',
+                  padding: 'clamp(20px, 4vw, 32px)',
                   display: 'flex',
                   alignItems: 'center',
-                  gap: '32px',
+                  gap: 'clamp(16px, 4vw, 32px)',
                   position: 'relative',
                   overflow: 'hidden',
                   transition: 'all 0.3s ease',
@@ -139,16 +139,16 @@ const Experience = () => {
               >
                 {/* Icon Badge */}
                 <div style={{
-                  width: '64px',
-                  height: '64px',
-                  minWidth: '64px',
-                  borderRadius: '16px',
+                  width: 'clamp(48px, 12vw, 64px)',
+                  height: 'clamp(48px, 12vw, 64px)',
+                  minWidth: 'clamp(48px, 12vw, 64px)',
+                  borderRadius: '12px',
                   background: 'rgba(255, 255, 255, 0.15)',
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   color: '#fff',
-                  fontSize: '1.8rem',
+                  fontSize: 'clamp(1.2rem, 5vw, 1.8rem)',
                   backdropFilter: 'blur(4px)'
                 }}>
                   {item.icon}
@@ -162,11 +162,11 @@ const Experience = () => {
 
                 {/* Number Overlay */}
                 <div style={{
-                  fontSize: '3rem',
+                  fontSize: 'clamp(2rem, 8vw, 3rem)',
                   fontFamily: 'var(--ff-display)',
                   color: 'transparent',
                   WebkitTextStroke: '1px rgba(255, 255, 255, 0.15)',
-                  marginLeft: '20px'
+                  marginLeft: 'auto'
                 }}>
                   {item.id}
                 </div>
@@ -193,9 +193,16 @@ const Experience = () => {
           50% { transform: scale(1.5); opacity: 0.5; }
           100% { transform: scale(1); opacity: 1; }
         }
-        @media (max-width: 1100px) {
-          .exp-scroll-wrap { grid-template-columns: 1fr !important; gap: 60px !important; }
-          .exp-left { position: relative !important; top: 0 !important; margin-bottom: 60px; }
+        @media (max-width: 1024px) {
+          .exp-scroll-wrap { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .exp-left { position: relative !important; top: 0 !important; margin-bottom: 48px; text-align: center; }
+          .exp-left div[style*="display: inline-flex"] { margin-bottom: 24px; }
+          .exp-left div[style*="borderLeft"] { border-left: none !important; border-top: 2px solid var(--accent-green); padding-left: 0 !important; padding-top: 16px; margin-bottom: 24px; }
+          .exp-left div[style*="display: flex; flexWrap: wrap"] { justify-content: center; margin-bottom: 40px; }
+        }
+        @media (max-width: 640px) {
+          .exp-card { flex-direction: column; text-align: center; align-items: center; }
+          .exp-card div[style*="marginLeft: auto"] { margin-left: unset !important; position: absolute; top: 20px; right: 20px; font-size: 1.5rem !important; }
         }
       `}</style>
     </section>

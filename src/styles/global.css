@@ -80,19 +80,36 @@ button {
 }
 
 /* Utility Classes */
+:root {
+  --container-px: 8%;
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --container-px: 6%;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --container-px: 24px;
+  }
+}
+
 .section-padding {
-  padding: 120px 8%;
+  padding: 120px var(--container-px);
 }
 
 @media (max-width: 768px) {
   .section-padding {
-    padding: 80px 6%;
+    padding: 80px var(--container-px);
   }
 }
 
 .container {
   max-width: var(--container-max-width);
   margin: 0 auto;
+  padding: 0 var(--container-px);
 }
 
 .text-gradient {

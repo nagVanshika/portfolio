@@ -104,7 +104,7 @@ const Navbar = () => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         style={{ 
-          fontSize: '2rem', 
+          fontSize: 'clamp(1.5rem, 4vw, 2rem)', 
           fontWeight: 700, 
           color: logoColor, 
           fontFamily: 'var(--ff-display)',
@@ -201,7 +201,7 @@ const Navbar = () => {
       <div 
         className="mobile-only"
         onClick={() => setIsMobileMenuOpen(true)}
-        style={{ color: '#fff', fontSize: '2rem', cursor: 'pointer' }}
+        style={{ color: isScrolled ? '#fff' : (isDarkSection ? '#000' : '#fff'), fontSize: '2rem', cursor: 'pointer', transition: 'color 0.5s var(--ease-cinematic)' }}
       >
         <HiMenuAlt3 />
       </div>
@@ -231,7 +231,7 @@ const Navbar = () => {
               />
             </div>
             
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
               {navLinks.map((link, i) => (
                   <motion.a
                     key={link.name}
@@ -243,7 +243,7 @@ const Navbar = () => {
                     style={{
                       textDecoration: 'none',
                       color: activeSection === link.href.substring(1) ? 'var(--accent-green)' : 'rgba(255, 255, 255, 0.4)',
-                      fontSize: '2.5rem',
+                      fontSize: 'clamp(1.8rem, 8vw, 2.5rem)',
                       fontFamily: 'var(--ff-display)',
                       fontWeight: 700,
                       textTransform: 'uppercase',
@@ -253,6 +253,28 @@ const Navbar = () => {
                     {link.name}
                   </motion.a>
               ))}
+              
+              {/* Mobile CTA */}
+              <motion.a
+                href="#contact"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+                onClick={(e) => handleLinkClick(e, '#contact')}
+                style={{
+                  marginTop: '20px',
+                  padding: '16px',
+                  background: 'var(--accent-green)',
+                  borderRadius: '12px',
+                  color: '#000',
+                  textAlign: 'center',
+                  fontWeight: 800,
+                  fontSize: '1rem',
+                  textTransform: 'uppercase'
+                }}
+              >
+                Let's Work Together
+              </motion.a>
             </div>
           </motion.div>
         )}

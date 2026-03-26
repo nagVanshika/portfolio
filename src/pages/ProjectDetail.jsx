@@ -37,14 +37,14 @@ const ProjectDetail = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.8, ease: 'easeInOut' }}
-      style={{ padding: '160px 8% 100px', minHeight: '100vh', backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}
+      style={{ padding: 'clamp(100px, 15vw, 160px) var(--container-px) 100px', minHeight: '100vh', backgroundColor: 'var(--bg-base)', color: 'var(--text-primary)' }}
     >
       <div className="container" style={{ maxWidth: 'var(--container-max-width)', margin: '0 auto' }}>
         <Link to="/#projects" style={{ color: 'var(--text-muted)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '8px', marginBottom: '40px', fontSize: '0.875rem', fontWeight: 600, textTransform: 'uppercase' }} className="hover-white">
           <FiArrowLeft /> Back to Portfolio
         </Link>
         
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))', gap: '80px', alignItems: 'start' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', gap: 'clamp(40px, 8vw, 80px)', alignItems: 'start' }}>
           
           {/* Left Column: Content */}
           <motion.div
@@ -52,21 +52,22 @@ const ProjectDetail = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '24px', marginBottom: '40px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(16px, 4vw, 24px)', marginBottom: '40px', flexWrap: 'wrap' }}>
               <span style={{ 
                 fontFamily: 'var(--ff-display)', 
-                fontSize: '3.5rem', 
+                fontSize: 'clamp(2.5rem, 8vw, 3.5rem)', 
                 fontStyle: 'italic', 
                 color: 'transparent',
                 WebkitTextStroke: '1px rgba(255,255,255,0.2)',
                 lineHeight: 1
               }}>{project.number}</span>
               <h1 style={{ 
-                fontSize: 'clamp(3rem, 6vw, 5rem)', 
+                fontSize: 'clamp(2.5rem, 8vw, 5rem)', 
                 color: '#fff', 
                 fontFamily: 'var(--ff-display)',
                 letterSpacing: 'var(--ff-letter-spacing-tight)',
-                lineHeight: 1.1
+                lineHeight: 1.1,
+                margin: 0
               }}>{project.title}</h1>
             </div>
 
@@ -126,17 +127,19 @@ const ProjectDetail = () => {
                 whileHover={{ scale: 1.02, translateY: -2 }}
                 whileTap={{ scale: 0.98 }}
                 style={{
-                  display: 'inline-flex',
+                  display: 'flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '16px',
-                  padding: '20px 40px',
+                  padding: '18px 32px',
                   background: 'var(--accent-gradient)',
                   color: '#fff',
                   borderRadius: '100px',
                   fontWeight: 700,
                   fontSize: '1rem',
                   textDecoration: 'none',
-                  boxShadow: '0 10px 30px rgba(182, 160, 255, 0.2)'
+                  boxShadow: '0 10px 30px rgba(182, 160, 255, 0.2)',
+                  width: 'fit-content'
                 }}
               >
                 Launch Project <FiExternalLink />

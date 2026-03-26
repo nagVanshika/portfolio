@@ -30,8 +30,8 @@ const TimelineNode = ({ item }) => (
     whileHover={{ y: -8, transition: { duration: 0.4 } }}
     style={{
       flex: 1,
-      minWidth: '320px',
-      padding: '40px',
+      minWidth: 'min(100%, 320px)',
+      padding: 'clamp(24px, 5vw, 40px)',
       background: 'var(--bg-base)',
       borderRadius: '24px',
       display: 'flex',
@@ -122,6 +122,7 @@ const Education = () => {
         <motion.img
           src="/images/doodle1.png"
           alt="Doodle"
+          className="education-doodle"
           initial={{ rotate: 0, y: 0 }}
           animate={{ 
             rotate: [0, 15, 0],
@@ -136,7 +137,7 @@ const Education = () => {
             position: 'absolute',
             bottom: '-20px',
             right: '4%',
-            width: '280px',
+            width: 'clamp(140px, 25vw, 280px)',
             height: 'auto',
             pointerEvents: 'none',
             zIndex: 1,
@@ -183,6 +184,12 @@ const styles = `
 
   .theme-black .gradient-border-mask {
     background: #0a0a0a;
+  }
+
+  @media (max-width: 768px) {
+    .education-doodle {
+      display: none !important;
+    }
   }
 `;
 

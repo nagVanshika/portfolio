@@ -104,10 +104,10 @@ const Skills = () => {
       ref={sectionRef}
       className="section-overlap" 
       style={{ 
-        minHeight: '100vh',
+        minHeight: 'auto',
         display: 'flex',
         alignItems: 'center',
-        padding: '120px 0',
+        padding: 'clamp(80px, 15vw, 160px) 0',
         background: 'var(--bg-emerald)', // Deep green background
         zIndex: 5,
         overflow: 'hidden',
@@ -164,9 +164,9 @@ const Skills = () => {
         {/* 2-Column Balanced Grid */}
         <div className="skills-grid" style={{ 
           display: 'grid', 
-          gridTemplateColumns: 'repeat(2, 1fr)', 
-          gap: '24px 40px', /* Reduced gap */
-          padding: '0 20px', /* Reduced padding */
+          gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', 
+          gap: 'clamp(24px, 5vw, 40px)', 
+          padding: '0 clamp(10px, 4vw, 20px)',
           position: 'relative'
         }}>
           {/* Background Depth Gradient */}
@@ -188,7 +188,12 @@ const Skills = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}
+              style={{ 
+                display: 'flex', 
+                flexDirection: 'column', 
+                gap: '20px',
+                gridColumn: cat.category === "Tools & AI" ? '1 / -1' : 'auto'
+              }}
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <div style={{ width: '3px', height: '12px', background: 'var(--accent-green)', borderRadius: '100px' }} />
@@ -214,11 +219,23 @@ const Skills = () => {
       </motion.div>
 
       <style>{`
-        @media (max-width: 900px) {
+        @media (max-width: 640px) {
           .skills-grid {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-            padding: 0 20px !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+            padding: 0 !important;
+          }
+          .skills-grid > div {
+            gap: 12px !important;
+          }
+          /* Make pills slightly more compact on mobile */
+          div[style*="padding: 10px 18px"] {
+            padding: 8px 12px !important;
+            font-size: 0.8rem !important;
+            gap: 8px !important;
+          }
+          div[style*="font-size: 1.2rem"] {
+            font-size: 1rem !important;
           }
         }
       `}</style>

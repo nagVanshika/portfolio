@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { FiExternalLink, FiGithub } from 'react-icons/fi';
+import { FiExternalLink, FiGithub, FiArrowRight } from 'react-icons/fi';
 import '../styles/variables.css';
 
 const Projects = () => {
@@ -79,7 +79,7 @@ const Projects = () => {
               Selected Work
             </motion.span>
             
-            <h3 style={{ fontSize: '4.5rem', fontFamily: 'var(--ff-display)', color: '#fff', lineHeight: '0.9', marginBottom: '24px', textTransform: 'uppercase' }}>
+            <h3 style={{ fontSize: 'clamp(2.5rem, 10vw, 4.5rem)', fontFamily: 'var(--ff-display)', color: '#fff', lineHeight: '0.9', marginBottom: '24px', textTransform: 'uppercase' }}>
               FEATURED<br/>PROJECTS
             </h3>
             
@@ -89,7 +89,7 @@ const Projects = () => {
           </div>
 
           {/* Right Column (Scroll Stack) */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
+          <div className="projects-list" style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
             {featuredProjects.map((project, i) => (
               <motion.div 
                 key={i}
@@ -121,7 +121,7 @@ const Projects = () => {
                 <div style={{
                   background: '#0f0f0f',
                   borderRadius: '31px',
-                  padding: '46px',
+                  padding: 'clamp(24px, 6vw, 46px)',
                   height: '100%',
                   width: '100%',
                   position: 'relative',
@@ -129,19 +129,19 @@ const Projects = () => {
                   transition: 'background 0.3s ease'
                 }}>
                   {/* Header Row */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: '40px' }}>
-                    <span style={{ fontSize: '3rem', fontFamily: 'var(--ff-display)', color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.15)' }}>{project.id}</span>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 'clamp(24px, 5vw, 40px)' }}>
+                    <span style={{ fontSize: 'clamp(2rem, 6vw, 3rem)', fontFamily: 'var(--ff-display)', color: 'transparent', WebkitTextStroke: '1px rgba(255,255,255,0.15)' }}>{project.id}</span>
                     <div style={{ padding: '6px 14px', background: 'rgba(0, 229, 160, 0.1)', border: '1px solid rgba(0, 229, 160, 0.2)', borderRadius: '100px' }}>
                       <span style={{ fontSize: '0.7rem', fontWeight: 800, color: 'var(--accent-green)', letterSpacing: '0.1em' }}>PRODUCTION</span>
                     </div>
                   </div>
 
                 {/* Main Content */}
-                <h4 style={{ fontSize: '2.5rem', fontFamily: 'var(--ff-display)', color: '#fff', marginBottom: '16px', textTransform: 'uppercase' }}>{project.title}</h4>
-                <p style={{ fontSize: '1.1rem', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '32px' }}>{project.desc}</p>
+                <h4 style={{ fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontFamily: 'var(--ff-display)', color: '#fff', marginBottom: '16px', textTransform: 'uppercase' }}>{project.title}</h4>
+                <p style={{ fontSize: 'clamp(0.95rem, 3vw, 1.1rem)', color: 'var(--text-secondary)', lineHeight: 1.6, marginBottom: '32px' }}>{project.desc}</p>
 
                   {/* Footer Row */}
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', flexWrap: 'wrap', gap: '24px' }}>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
                       {project.tags.map(tag => (
                         <span key={tag} style={{ padding: '6px 12px', background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border-ghost)', borderRadius: '6px', fontSize: '0.75rem', color: 'var(--text-muted)' }}>
@@ -153,7 +153,7 @@ const Projects = () => {
                     <Link 
                       to={`/project/${project.id === "01" ? "caarmaa-admin" : project.id === "02" ? "caarmaa-car-care" : project.id === "03" ? "caarmaa-tech" : project.id === "04" ? "caarmaa-billing" : "med-inventory"}`}
                       className="view-project-btn"
-                      style={{ color: '#fff', fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none' }}
+                      style={{ color: '#fff', fontSize: '1rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: '8px', textDecoration: 'none', marginLeft: 'auto' }}
                     >
                       View Details <FiExternalLink />
                     </Link>
@@ -172,6 +172,26 @@ const Projects = () => {
                 }} />
               </motion.div>
             ))}
+          </div>
+
+          <div className="mobile-swipe-hint" style={{ 
+            display: 'none', 
+            textAlign: 'center', 
+            marginTop: '-10px', 
+            marginBottom: '40px',
+            color: 'var(--accent-green)', 
+            fontSize: '0.8rem', 
+            fontWeight: 800, 
+            textTransform: 'uppercase', 
+            letterSpacing: '0.15em' 
+          }}>
+            <motion.div
+              animate={{ x: [0, 8, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '8px' }}
+            >
+              Swipe to see more <FiArrowRight />
+            </motion.div>
           </div>
         </div>
       </div>
@@ -208,9 +228,34 @@ const Projects = () => {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        @media (max-width: 1100px) {
-          .proj-scroll-wrap { grid-template-columns: 1fr !important; gap: 60px !important; }
-          .proj-left { position: relative !important; top: 0 !important; margin-bottom: 60px; }
+        @media (max-width: 1024px) {
+          .proj-scroll-wrap { grid-template-columns: 1fr !important; gap: 48px !important; }
+          .proj-left { position: relative !important; top: 0 !important; margin-bottom: 48px; text-align: center; }
+          .proj-left p { margin-left: auto; margin-right: auto; }
+        }
+        @media (max-width: 640px) {
+          .projects-list {
+            flex-direction: row !important;
+            overflow-x: auto !important;
+            scroll-snap-type: x mandatory !important;
+            gap: 20px !important;
+            margin: 0 -20px !important;
+            padding: 40px 20px !important;
+            scrollbar-width: none;
+            overflow-y: visible !important;
+          }
+          .projects-list::-webkit-scrollbar {
+            display: none;
+          }
+          .mobile-swipe-hint {
+            display: block !important;
+          }
+          .project-card { 
+            width: 100% !important; 
+            min-width: calc(100vw - 48px) !important;
+            scroll-snap-align: center !important;
+          }
+          .view-project-btn { width: 100%; justify-content: center; padding: 12px; border: 1px solid rgba(255,255,255,0.1); borderRadius: 12px; }
         }
       `}</style>
     </section>
